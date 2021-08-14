@@ -25,19 +25,22 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'echo "Deploy Code"'
-                sshagent(credentials: 'T3100') {
-                    sh 'echo "Connect SSH"'
-                    sh 'cd ~/Backend_Infowargame_v2'
-
-                    sh 'echo "Pull & Build"'
-                    sh 'git pull'
-                    sh (script: 'yarn')
-                    sh (script: 'yarn build')
-
-                    sh 'echo "Deploy"'
-                    sh (script: 'pm2 start yarn --interpreter bash --name CI/CD-server -- start')
-                }
+                sh 'echo "Connect SSH & Deploy"'
+                sshPublisher(
+                    continueOnError: false, 
+                    failOnError: true,
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: "T3100",
+                            transfers: [
+                                sshTransfer(execCommand: "cd ~/Backend_Infowargame_v2"),
+                                sshTransfer(execCommand: "yarn && yarn build")
+                                sshTransfer(execCommand: "pm2 start yarn --interpreter bash --name CI/CD-server -- start")
+                            ],
+                            verbose: true
+                        )
+                    ]
+                )
             }
         }
     }
