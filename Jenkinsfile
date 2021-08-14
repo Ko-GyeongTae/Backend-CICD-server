@@ -35,11 +35,12 @@ pipeline {
                             transfers: [
                                 sshTransfer(
                                     sourceFiles: "dist/, package.json",
-                                    remoteDirectory: "/home/ko/jenkins/",
-                                    execCommand: " \
-                                        cd ~/jenkins \
-                                        pm2 start yarn --interpreter bash --name CI/CD-server -- start \
-                                        exit \
+                                    remoteDirectory: "jenkins/cicd/",
+                                    execCommand: " 
+                                        cd ~/jenkins/cicd
+                                        yarn
+                                        pm2 start yarn --interpreter bash --name CI/CD-server -- start
+                                        exit 0
                                     ",
                                     execTimeout: 60000,
                                 )
