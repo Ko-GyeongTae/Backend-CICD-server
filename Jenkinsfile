@@ -34,7 +34,7 @@ pipeline {
                             configName: "T3100",
                             transfers: [
                                 sshTransfer(execCommand: "cd ~/Backend_Infowargame_v2"),
-                                sshTransfer(execCommand: "yarn && yarn build")
+                                sshTransfer(execCommand: "yarn && yarn build"),
                                 sshTransfer(execCommand: "pm2 start yarn --interpreter bash --name CI/CD-server -- start")
                             ],
                             verbose: true
