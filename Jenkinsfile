@@ -40,7 +40,8 @@ pipeline {
                                     yarn build \
                                     pm2 start yarn --interpreter bash --name CI/CD-server -- start \
                                     exit \
-                                "),
+                                ")
+                                execTimeout: 20000,
                             ],
                             verbose: true
                         )
