@@ -1,24 +1,25 @@
-pipline {
-    stages('CI') {
-        stage('Pull') {
+node {
+    agent any
+    stage('CI') {
+        steps('Pull') {
             echo 'Pulling Repository from github'
-            
+            checkout scm
         }
-        stage('Build') {
+        steps('Build') {
             echo 'Building Repository'
         }
-        stage('Test') {
+        steps('Test') {
             echo 'Testing Repository'
         }
     }
-    stages('CD') {
-        stage('Pull') {
+    stage('CD') {
+        steps('Pull') {
             echo 'Pulling Repository from CI stage'
         }
-        stage('PreDeploy') {
+        steps('PreDeploy') {
             echo 'Preparing Repository directory'
         }
-        stage('Deploy') {
+        steps('Deploy') {
             echo 'Deploying Repository'
         }
     }
