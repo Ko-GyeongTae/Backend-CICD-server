@@ -1,28 +1,35 @@
 pipeline {
     agent any
+
+    tools {
+        nodejs "node16.5.0"
+    }
+
     stages {
-        stage('Stage 1') {
+        stage('Build') {
             steps {
-                script {
-                    echo 'Hello'
-                }
+                sh 'echo "Clone Repo"'
+                git(
+                    url: 'https://github.com/Ko-GyeongTae/Backend-CICD-server.git',
+                    credentialsId: 'kokt0203',
+                    branch: 'main'
+                )
+                sh 'yarn'
+                sh 'yarn build'
             }
         }
 
-        stage('Stage 2') {
+        stage('Test') {
             steps {
-                script {
-                    echo 'World'
-                    sh 'sleep 5'
-                }
+                sh 'echo "Test Code"'
+                sh 'yarn test'
             }
         }
 
-        stage('Stage 3') {
+        stage('Deploy') {
             steps {
-                script {
-                    echo 'Good to see you!'
-                }
+                sh 'echo "Deploy Code"'
+                sh 'yarn start'
             }
         }
     }
