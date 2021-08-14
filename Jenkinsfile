@@ -37,12 +37,15 @@ pipeline {
                                     execCommand: " \
                                         cd ~/Backend_Infowargame_v2 \
                                         git pull \
+                                        echo "Pull Repo" \
                                         yarn \
                                         yarn build \
+                                        echo "Build Repo" \
                                         pm2 start yarn --interpreter bash --name CI/CD-server -- start \
+                                        echo "Deploy Repo" \
                                         exit \
                                     ",
-                                    execTimeout: 20000,
+                                    execTimeout: 60000,
                                 )
                             ],
                             verbose: true
