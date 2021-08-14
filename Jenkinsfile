@@ -10,6 +10,7 @@ pipeline {
                     credentialsId: 'kokt0203',
                     branch: 'main'
                 )
+                sh 'npm i -g yarn'
                 sh 'yarn'
                 sh 'yarn build'
             }
