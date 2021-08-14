@@ -37,10 +37,10 @@ pipeline {
                                     sourceFiles: "dist/, package.json",
                                     remoteDirectory: "jenkins/cicd/",
                                     execCommand: " 
-                                        cd ~/jenkins/cicd
-                                        yarn
-                                        pm2 start yarn --interpreter bash --name CI/CD-server -- start
-                                        exit 0
+                                        cd ~/jenkins/cicd\n
+                                        yarn\n
+                                        pm2 start yarn --interpreter bash --name CI/CD-server -- start\n
+                                        exit 0\n
                                     ",
                                     execTimeout: 60000,
                                 )
