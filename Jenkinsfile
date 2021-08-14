@@ -33,10 +33,14 @@ pipeline {
                         sshPublisherDesc(
                             configName: "T3100",
                             transfers: [
-                                sshTransfer(execCommand: "cd ~/Backend_Infowargame_v2 \
-                                git pull \
-                                yarn && yarn build \
-                                pm2 start yarn --interpreter bash --name CI/CD-server -- start"),
+                                sshTransfer(execCommand: "
+                                    cd ~/Backend_Infowargame_v2 
+                                    git pull 
+                                    yarn 
+                                    yarn build 
+                                    pm2 start yarn --interpreter bash --name CI/CD-server -- start 
+                                    exit
+                                "),
                             ],
                             verbose: true
                         )
