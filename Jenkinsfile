@@ -34,8 +34,8 @@ pipeline {
                             configName: "T3100",
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: "dist/, package.json",
-                                    remoteDirectory: "jenkins/cicd/",
+                                    sourceFiles: "**",
+                                    remoteDirectory: "node_modules/",
                                     execCommand: "cd ~/jenkins/cicd && yarn && pm2 start yarn --interpreter bash --name CI/CD-server -- start && exit 0",
                                     execTimeout: 300000,
                                 )
