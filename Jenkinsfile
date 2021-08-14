@@ -8,9 +8,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Clone Repo"'
+                sh 'echo "Pull & Build Repo"'
                 
-                sh(script: 'npm install -g yarn')
                 sh(script: 'yarn')
                 sh(script: 'yarn build')
                 
@@ -27,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo "Deploy Code"'
-                sh(script: 'yarn start')
+                sh(script: 'pm2 start yarn --interpreter bash --name CiCd-Test -- start')
             }
         }
     }
