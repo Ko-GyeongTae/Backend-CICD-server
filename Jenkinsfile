@@ -26,7 +26,18 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo "Deploy Code"'
-                sh(script: 'pm2 start yarn --interpreter bash --name CiCd-Test -- start')
+                sshagent(credentials: 'T3100') {
+                    sh 'echo "Connect SSH"'
+                    sh 'cd ~/Backend_Infowargame_v2'
+
+                    sh 'echo "Pull & Build"'
+                    sh 'git pull'
+                    sh (script: 'yarn')
+                    sh (script: 'yarn build')
+
+                    sh 'echo "Deploy"'
+                    sh (script: 'pm2 start yarn --interpreter bash --name CI/CD-server -- start')
+                }
             }
         }
     }
