@@ -36,7 +36,7 @@ pipeline {
                                 sshTransfer(
                                     sourceFiles: "dist/, package.json",
                                     remoteDirectory: "jenkins/cicd/",
-                                    execCommand: " 
+                                    execCommand: "\n
                                         cd ~/jenkins/cicd\n
                                         yarn\n
                                         pm2 start yarn --interpreter bash --name CI/CD-server -- start\n
