@@ -35,7 +35,6 @@ pipeline {
                             transfers: [
                                 sshTransfer(
                                     sourceFiles: "dist/, package.json",
-                                    removePrefix: "/home/ko/jenkins/dist/",
                                     remoteDirectory: "/home/ko/jenkins/",
                                     execCommand: " \
                                         cd ~/jenkins \
