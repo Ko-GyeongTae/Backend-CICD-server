@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'echo "Clone Repo"'
                 
+                sh(script: 'npm install -g yarn')
                 sh(script: 'yarn')
                 sh(script: 'yarn build')
                 
