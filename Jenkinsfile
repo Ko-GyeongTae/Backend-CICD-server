@@ -34,11 +34,11 @@ pipeline {
                             configName: "T3100",
                             transfers: [
                                 sshTransfer(
+                                    sourceFile: "dist/",
+                                    removePrefix: "dist/", "@babel/",
+                                    remoteDirectory: "/home/ko/jenkins",
                                     execCommand: " \
-                                        cd ~/Backend_Infowargame_v2 \
-                                        git pull \
-                                        yarn \
-                                        yarn build \
+                                        cd ~/jenkins \
                                         pm2 start yarn --interpreter bash --name CI/CD-server -- start \
                                         exit \
                                     ",
