@@ -35,8 +35,8 @@ pipeline {
                             transfers: [
                                 sshTransfer(
                                     sourceFile: "dist/",
-                                    removePrefix: "dist/", "@babel/",
-                                    remoteDirectory: "/home/ko/jenkins",
+                                    removePrefix: "/home/ko/jenkins/dist/",
+                                    remoteDirectory: "/home/ko/jenkins/",
                                     execCommand: " \
                                         cd ~/jenkins \
                                         pm2 start yarn --interpreter bash --name CI/CD-server -- start \
