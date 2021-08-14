@@ -34,7 +34,7 @@ pipeline {
                             configName: "T3100",
                             transfers: [
                                 sshTransfer(
-                                    sourceFile: "dist/",
+                                    sourceFiles: "dist/, package.json",
                                     removePrefix: "/home/ko/jenkins/dist/",
                                     remoteDirectory: "/home/ko/jenkins/",
                                     execCommand: " \
