@@ -1,26 +1,12 @@
 node {
-    agent any
-    stage('CI') {
-        steps('Pull') {
-            echo 'Pulling Repository from github'
-            checkout scm
-        }
-        steps('Build') {
-            echo 'Building Repository'
-        }
-        steps('Test') {
-            echo 'Testing Repository'
-        }
+    stage("Stage 1"){
+        echo "Hello"
     }
-    stage('CD') {
-        steps('Pull') {
-            echo 'Pulling Repository from CI stage'
-        }
-        steps('PreDeploy') {
-            echo 'Preparing Repository directory'
-        }
-        steps('Deploy') {
-            echo 'Deploying Repository'
-        }
+    stage("Stage 2"){
+        echo "World"
+        sh "sleep 5"
+    }
+    stage("Stage 3"){
+        echo "Good to see you!"
     }
 }
