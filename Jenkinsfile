@@ -1,12 +1,15 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs '16.5.0'
+    }
+
     stages {
         stage('Build') {
             steps {
                 sh 'echo "Clone Repo"'
                 
-                sh(script: 'npm i -g yarn')
                 sh(script: 'yarn')
                 sh(script: 'yarn build')
                 
