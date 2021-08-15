@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "CI/CD test Message"', () => {
+      expect(appController.getHello()).toBe('Jenkins Docker CI/CD test server');
     });
   });
 });
