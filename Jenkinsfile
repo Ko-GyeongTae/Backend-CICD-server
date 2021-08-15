@@ -34,7 +34,7 @@ pipeline {
                             configName: "T3100",
                             transfers: [
                                 sshTransfer(
-                                    execCommand: "cd ~/jenkins/Backend-CICD-server && docker rm -f cicd-server && docker build --tag cicd-server . && sudo docker run -it --net=host --name cicd-server -p 5555:5555 cicd-server && exit 0",
+                                    execCommand: "cd ~/jenkins/Backend-CICD-server && git pull && docker rm -f cicd-server && docker build --tag cicd-server . && docker run -d --name cicd-server -p 5555:5555 cicd-server && exit 0",
                                     execTimeout: 300000,
                                 )
                             ],
