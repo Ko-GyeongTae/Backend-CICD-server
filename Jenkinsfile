@@ -34,9 +34,7 @@ pipeline {
                             configName: "T3100",
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: "**",
-                                    remoteDirectory: "node_modules/",
-                                    execCommand: "cd ~/jenkins/cicd && yarn && pm2 start yarn --interpreter bash --name CI/CD-server -- start && exit 0",
+                                    execCommand: "cd ~/jenkins/Backend-CICD-server && docker rm -f cicd-server && docker build --tag cicd-server . && sudo docker run -it --net=host --name cicd-server -p 5555:5555 cicd-server && exit 0",
                                     execTimeout: 300000,
                                 )
                             ],
