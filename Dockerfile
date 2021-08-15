@@ -3,7 +3,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install -g yarn
 RUN yarn
 RUN yarn build
 
